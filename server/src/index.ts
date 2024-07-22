@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { ALLOWED_ORIGIN, NODE_ENV, PORT } from "./config/environments";
-import email from "./routes/email";
+import auth from "./routes/auth";
 
 const app = express();
 
@@ -24,7 +24,9 @@ app.use(cors(corsOptions));
 
 app.use(express.json());
 
-app.use("/", email);
+app.use(express.urlencoded({ extended: true }));
+
+app.use("/", auth);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}, ${NODE_ENV} environment`);
