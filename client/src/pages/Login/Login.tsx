@@ -19,7 +19,8 @@ const Login: FC = () => {
   return (
     <form className={style["login"]} onSubmit={handleSubmit}>
       <input
-        type="text"
+        type="email"
+        name="email"
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
