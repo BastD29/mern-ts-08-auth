@@ -1,6 +1,8 @@
 import { Button, Html } from "@react-email/components";
 import * as React from "react";
 
+// * THE EMAIL TEMPLATE THAT USER RECEIVES
+
 export default function Email() {
   return (
     <Html>
