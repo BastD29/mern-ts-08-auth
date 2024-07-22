@@ -9,6 +9,9 @@ const login = async (req: Request, res: Response) => {
   if (!user) throw Error("No user");
 
   try {
+    if (!JWT_SECRET) {
+      throw new Error("JWT_SECRET is not defined");
+    }
     const token = jwt.sign({ userId: user.id }, JWT_SECRET, {
       expiresIn: "1h",
     });
@@ -18,7 +21,8 @@ const login = async (req: Request, res: Response) => {
     return res.send("Error logging in. Please try again");
   }
 
-  res.send("Check your email to finish logging in");
+  // res.send("Check your email to finish logging in");
+  res.status(200).json({ message: "Check your email to finish logging in" });
 };
 
 export { login };
