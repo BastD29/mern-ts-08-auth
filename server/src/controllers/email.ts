@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { Resend } from "resend";
 import { RESEND_API_KEY } from "../config/environments";
+// import Email from "../../../react-email-starter/emails/index"
 
 const sendEmail = async (req: Request, res: Response) => {
   try {
@@ -8,10 +9,11 @@ const sendEmail = async (req: Request, res: Response) => {
     console.log("resend:", resend);
 
     const response = await resend.emails.send({
-      from: "Acme <onboarding@resend.dev>",
-      to: ["delivered@resend.dev"],
+      from: "onboarding@resend.dev",
+      to: "moyef23642@vasomly.com",
       subject: "hello world",
-      html: "<strong>it works!</strong>",
+      react: "<strong>it works!</strong>",
+      //   react: Email,
     });
 
     res.status(200).json({ message: "Email sent successfully", response });
