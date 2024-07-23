@@ -39,6 +39,8 @@ const login = async (req: Request, res: Response) => {
 };
 
 const verify = async (req: Request, res: Response) => {
+  console.log("req.query:", req.query);
+
   const token = req.query.token as string;
   console.log("token in verify:", token);
 
@@ -57,8 +59,13 @@ const verify = async (req: Request, res: Response) => {
       token,
       JWT_SECRET
     ) as unknown as AuthTokenPayload;
+    console.log("decodedToken:", decodedToken);
+
     const userId = Number(decodedToken.userId);
+    console.log("userId:", userId);
+
     const user = USERS.find((u) => u.id === userId);
+    console.log("user:", user);
 
     if (!user) {
       return res.sendStatus(401);
