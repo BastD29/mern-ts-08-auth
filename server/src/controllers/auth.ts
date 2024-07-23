@@ -41,6 +41,7 @@ const login = async (req: Request, res: Response) => {
 const verify = async (req: Request, res: Response) => {
   const token = req.query.token as string;
   console.log("token in verify:", token);
+
   if (token == null) return res.sendStatus(401);
 
   if (!token) {
