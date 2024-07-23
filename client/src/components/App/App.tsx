@@ -1,13 +1,19 @@
 import { FC } from "react";
-import Login from "../../pages/Login/Login";
-import style from "./App.module.scss";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Layout from "../Layout/Layout";
+import NotFound from "../../pages/NotFound/NotFound";
+import { routes } from "../../routes";
 
 const App: FC = () => {
-  return (
-    <div className={style["app"]}>
-      <Login />
-    </div>
-  );
+  const router = createBrowserRouter([
+    {
+      element: <Layout />,
+      errorElement: <NotFound />,
+      children: routes,
+    },
+  ]);
+
+  return <RouterProvider router={router} />;
 };
 
 export default App;
