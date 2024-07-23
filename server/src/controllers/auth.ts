@@ -10,6 +10,7 @@ interface AuthTokenPayload extends JwtPayload {
 
 const login = async (req: Request, res: Response) => {
   const user = USERS.find((u) => u.email === req.body.email);
+  console.log("user:", user);
 
   if (!user) throw Error("No user");
 
@@ -20,16 +21,19 @@ const login = async (req: Request, res: Response) => {
     const token = jwt.sign({ userId: user.id }, JWT_SECRET, {
       expiresIn: "1h",
     });
+    console.log("token in login:", token); // token is effectively printed as expected (not undefined)
 
     await sendMagicLinkEmail({ email: user.email, token });
     res.status(200).json({ message: "Check your email to finish logging in" });
   } catch (error) {
-    return res.send("Error logging in. Please try again");
+    console.error("Error logging in:", error);
+    return res.status(500).send("Error logging in. Please try again");
   }
 };
 
 const verify = async (req: Request, res: Response) => {
   const token = req.query.token as string;
+  console.log("token in verify:", token);
   if (token == null) return res.sendStatus(401);
 
   if (!token) {
