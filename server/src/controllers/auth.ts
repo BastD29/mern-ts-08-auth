@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { USERS } from "../data/users";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { JWT_SECRET } from "../config/environments";
+import { sendMagicLinkEmail } from "../utils/sendMagicLinkEmail";
 
 interface AuthTokenPayload extends JwtPayload {
   userId: string;
@@ -20,7 +21,7 @@ const login = async (req: Request, res: Response) => {
       expiresIn: "1h",
     });
 
-    // await sendMagicLinkEmail({ email: user.email, token });
+    await sendMagicLinkEmail({ email: user.email, token });
     res.status(200).json({ message: "Check your email to finish logging in" });
   } catch (error) {
     return res.send("Error logging in. Please try again");
@@ -46,6 +47,11 @@ const verify = async (req: Request, res: Response) => {
     ) as unknown as AuthTokenPayload;
     const userId = Number(decodedToken.userId);
     const user = USERS.find((u) => u.id === userId);
+
+    if (!user) {
+      return res.sendStatus(401);
+    }
+
     res.send(`Authed as ${user?.name}`);
   } catch (error) {
     res.sendStatus(401);

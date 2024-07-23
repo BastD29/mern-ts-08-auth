@@ -4,7 +4,22 @@ const env = process.env.NODE_ENV || "development";
 
 dotenv.config({ path: `./environments/.env.${env}` });
 
-const { NODE_ENV, RESEND_API_KEY, ALLOWED_ORIGIN, PORT, JWT_SECRET } =
-  process.env;
+const {
+  NODE_ENV,
+  RESEND_API_KEY,
+  ALLOWED_ORIGIN,
+  PORT,
+  JWT_SECRET,
+  SEND_GRID_API_KEY,
+  FROM_EMAIL,
+} = process.env;
 
-export { NODE_ENV, RESEND_API_KEY, ALLOWED_ORIGIN, PORT, JWT_SECRET };
+export {
+  NODE_ENV,
+  RESEND_API_KEY,
+  ALLOWED_ORIGIN,
+  PORT,
+  JWT_SECRET,
+  SEND_GRID_API_KEY,
+  FROM_EMAIL,
+};
