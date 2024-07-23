@@ -2,6 +2,8 @@ import { BASE_URL, LOGIN } from "../constants/endpoints";
 import { ResponseType } from "../models/login";
 
 const login = async (email: string) => {
+  console.log("email:", email); // prints effectively the email address as expected
+
   try {
     const url = `${BASE_URL}${LOGIN}`;
     console.log("url:", url);
