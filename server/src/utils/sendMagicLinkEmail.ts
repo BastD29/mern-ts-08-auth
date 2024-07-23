@@ -1,10 +1,15 @@
 import sendgrid from "@sendgrid/mail";
-import { FROM_EMAIL } from "../config/environments";
+import { FROM_EMAIL, SEND_GRID_API_KEY } from "../config/environments";
 
 type SendMagicLinkEmailProps = {
   email: string;
   token: string;
 };
+
+if (!SEND_GRID_API_KEY) {
+  throw new Error("SEND_GRID_API_KEY is not defined");
+}
+sendgrid.setApiKey(SEND_GRID_API_KEY);
 
 async function sendMagicLinkEmail({ email, token }: SendMagicLinkEmailProps) {
   console.log("email:", email); // email printed as expected
@@ -13,6 +18,8 @@ async function sendMagicLinkEmail({ email, token }: SendMagicLinkEmailProps) {
   if (!FROM_EMAIL) {
     throw new Error("FROM_EMAIL is not defined");
   }
+
+  console.log("FROM_EMAIL:", FROM_EMAIL);
 
   return sendgrid
     .send({

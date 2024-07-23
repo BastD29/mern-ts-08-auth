@@ -12,12 +12,19 @@ const login = async (req: Request, res: Response) => {
   const user = USERS.find((u) => u.email === req.body.email);
   console.log("user:", user);
 
-  if (!user) throw Error("No user");
+  if (!user) {
+    console.error("No user found with this email");
+    throw new Error("No user");
+  }
 
   try {
     if (!JWT_SECRET) {
+      console.error("JWT_SECRET is not defined");
       throw new Error("JWT_SECRET is not defined");
     }
+
+    console.log("JWT_SECRET:", JWT_SECRET);
+
     const token = jwt.sign({ userId: user.id }, JWT_SECRET, {
       expiresIn: "1h",
     });
