@@ -1,9 +1,12 @@
 import { FC, FormEvent, useState } from "react";
 import { login } from "../../services/login";
+import { useNavigate } from "react-router-dom";
 import style from "./Login.module.scss";
+import { SUCCESS } from "../../constants/routes";
 
 const Login: FC = () => {
   const [email, setEmail] = useState<string>("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -11,6 +14,8 @@ const Login: FC = () => {
     try {
       const response = await login(email);
       console.log("response:", response);
+
+      navigate(SUCCESS, { state: { message: response.message } }); // message: "Check your email to finish logging in"
     } catch (error) {
       console.error("Login failed:", error);
     }

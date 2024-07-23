@@ -2,7 +2,7 @@ import { BASE_URL, LOGIN } from "../constants/endpoints";
 import { ResponseType } from "../models/login";
 
 const login = async (email: string) => {
-  console.log("email:", email); // prints effectively the email address as expected
+  console.log("email:", email);
 
   try {
     const url = `${BASE_URL}${LOGIN}`;
@@ -24,7 +24,7 @@ const login = async (email: string) => {
 
     const data: ResponseType = await response.json();
 
-    return data.email;
+    return data;
   } catch (error) {
     console.error(error);
     throw error;
