@@ -1,10 +1,13 @@
-import { FC, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { FC, useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { verify } from "../../services/verify";
+import { VERIFY } from "../../constants/routes";
 import style from "./Verify.module.scss";
 
 const Verify: FC = () => {
+  const [message, setMessage] = useState<string>("");
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const query = new URLSearchParams(location.search);
@@ -17,6 +20,10 @@ const Verify: FC = () => {
       try {
         const response = await verify(token as string);
         console.log("response:", response);
+
+        setMessage(response.message);
+
+        navigate(VERIFY, { state: { message: response.message } }); // message: `Authed as ${user?.name}`
       } catch (error) {
         console.error("Error verifying token:", error);
         throw new Error("Verification failed. Please try again");
@@ -31,7 +38,7 @@ const Verify: FC = () => {
   return (
     <div className={style["verify"]}>
       <h2>Verify</h2>
-      {/* <p>{message}</p> */}
+      <p>{message}</p>
     </div>
   );
 };

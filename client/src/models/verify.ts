@@ -1,5 +1,5 @@
-// type ResponseType = {
-//     ???
-// };
+type ResponseType = {
+  message: string;
+};
 
-// export type { ResponseType };
+export type { ResponseType };

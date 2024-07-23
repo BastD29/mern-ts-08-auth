@@ -1,6 +1,7 @@
 import { BASE_URL, VERIFY } from "../constants/endpoints";
+import { ResponseType } from "../models/verify";
 
-const verify = async (token: string): Promise<string> => {
+const verify = async (token: string): Promise<ResponseType> => {
   console.log("token:", token);
 
   try {
@@ -15,7 +16,7 @@ const verify = async (token: string): Promise<string> => {
       throw new Error("Verification failed");
     }
 
-    const data = await response.json();
+    const data: ResponseType = await response.json();
     console.log("data:", data);
 
     return data;
