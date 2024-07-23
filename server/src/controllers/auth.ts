@@ -71,7 +71,8 @@ const verify = async (req: Request, res: Response) => {
       return res.sendStatus(401);
     }
 
-    res.send(`Authed as ${user?.name}`);
+    // res.send(`Authed as ${user?.name}`);
+    res.status(200).json({ message: `Authed as ${user?.name}` });
   } catch (error) {
     res.sendStatus(401);
   }
