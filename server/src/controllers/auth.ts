@@ -13,7 +13,7 @@ const login = async (req: Request, res: Response) => {
   console.log("user:", user);
 
   if (!user) {
-    console.error("No user found with this email");
+    console.error("No user found with this email"); // send this in the frontend
     throw new Error("No user");
   }
 
