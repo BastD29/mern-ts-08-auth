@@ -1,4 +1,4 @@
-# SEND EMAIL WITH MERN STACK
+# SESSION-BASED AUTH WITH MERN STACK
 
 This project aims to...
 
