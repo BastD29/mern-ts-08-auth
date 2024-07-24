@@ -2,4 +2,9 @@ type UserType = {
   email: string;
 };
 
-export type { UserType };
+type ResponseType = {
+  message: string;
+  user: UserType;
+};
+
+export type { UserType, ResponseType };

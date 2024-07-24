@@ -2,5 +2,6 @@
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const LOGIN = "/login";
 const VERIFY = "/verify";
+const ME = "/me";
 
-export { BASE_URL, LOGIN, VERIFY };
+export { BASE_URL, LOGIN, VERIFY, ME };
