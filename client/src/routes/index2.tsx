@@ -17,6 +17,9 @@ const NotFound: LazyExoticComponent<FC> = lazy(
 const Success: LazyExoticComponent<FC> = lazy(
   () => import("../pages/Success/Success")
 );
+const Verify: LazyExoticComponent<FC> = lazy(
+  () => import("../pages/Verify/Verify")
+);
 
 export const routes: RouteObject[] = [
   {
@@ -28,8 +31,9 @@ export const routes: RouteObject[] = [
     path: "/auth",
     element: <AuthLayout />,
     children: [
-      { path: "login", element: <Login /> },
-      { path: "success", element: <Success /> },
+      { path: "login", element: <Login /> }, // page where user inserts email
+      { path: "success", element: <Success /> }, // page telling user to check his in mail with a link to click
+      { path: "verify", element: <Verify /> }, // page getting and verifying the token
     ],
   },
   {
