@@ -31,7 +31,7 @@ async function sendMagicLinkEmail({ email, token }: SendMagicLinkEmailProps) {
       from: FROM_EMAIL,
       subject: "Finish logging in",
       // html: `<a href="http://localhost:3000/verify?token=${token}">Log In</a>`,
-      html: `<a href="${BASE_URL}/verify?token=${token}">Log In</a>`,
+      html: `<a href="${BASE_URL}/auth/verify?token=${token}" target="_blank">Log In</a>`,
     })
     .catch((error) => {
       console.error("Error sending email:", error); // Log errors from SendGrid
