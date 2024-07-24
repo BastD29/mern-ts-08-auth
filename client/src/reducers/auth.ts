@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, SET_TOKEN, SET_USER } from "../constants/actions";
+import { /* LOGIN, */ LOGOUT, SET_TOKEN, SET_USER } from "../constants/actions";
 import { AuthActionType, AuthStateType } from "../models/auth";
 
 const initialState: AuthStateType = {
@@ -11,12 +11,12 @@ const reducer = (
   action: AuthActionType
 ): AuthStateType => {
   switch (action.type) {
-    case LOGIN:
-      return {
-        ...state,
-        token: action.payload.token,
-        user: action.payload.user,
-      };
+    // case LOGIN:
+    //   return {
+    //     ...state,
+    //     token: action.payload.token,
+    //     user: action.payload.user,
+    //   };
     case LOGOUT:
       return {
         ...state,

@@ -5,12 +5,10 @@ import style from "./Home.module.scss";
 const Home: FC = () => {
   const { state } = useAuthContext();
 
-  console.log("state:", state);
+  // console.log("state:", state);
 
   return (
     <div className={style["home"]}>
-      <h2>Home</h2>
-      {/* {state.user && <p>Welcome, {state.user?.email}</p>} */}
       {state.user ? (
         <p>Welcome, {state.user.email}</p>
       ) : (

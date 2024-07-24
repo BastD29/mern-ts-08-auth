@@ -14,10 +14,10 @@ const Verify: FC = () => {
 
   useEffect(() => {
     const query = new URLSearchParams(location.search);
-    console.log("query:", query);
+    // console.log("query:", query);
 
     const token = query.get("token");
-    console.log("token:", token);
+    // console.log("token:", token);
 
     if (!token) {
       setMessage("No token found");
@@ -27,7 +27,7 @@ const Verify: FC = () => {
     const verifyToken = async () => {
       try {
         const response = await verify(token as string);
-        console.log("response:", response);
+        // console.log("response:", response);
         setMessage(response.message);
         localStorage.setItem("token", token);
         dispatch({ type: SET_TOKEN, payload: token });

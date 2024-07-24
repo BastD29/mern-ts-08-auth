@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, SET_TOKEN, SET_USER } from "../constants/actions";
+import { /* LOGIN, */ LOGOUT, SET_TOKEN, SET_USER } from "../constants/actions";
 import { UserType } from "./user";
 
 // STATE
@@ -10,10 +10,10 @@ type AuthStateType = {
 
 // ACTIONS
 
-type LoginActionType = {
-  type: typeof LOGIN;
-  payload: { token: string; user: UserType };
-};
+// type LoginActionType = {
+//   type: typeof LOGIN;
+//   payload: { token: string; user: UserType };
+// };
 
 type LogoutActionType = { type: typeof LOGOUT };
 
@@ -25,9 +25,7 @@ type SetUserActionType = {
 type SetTokenActionType = { type: typeof SET_TOKEN; payload: string };
 
 type AuthActionType =
-  | LoginActionType
-  | LogoutActionType
-  | SetUserActionType
-  | SetTokenActionType;
+  // | LoginActionType
+  LogoutActionType | SetUserActionType | SetTokenActionType;
 
 export type { AuthStateType, AuthActionType };

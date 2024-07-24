@@ -7,7 +7,7 @@ const AuthLayout: FC = () => {
   const { state } = useAuthContext();
   const navigate = useNavigate();
 
-  console.log("state.token:", state.token);
+  // console.log("state.token:", state.token);
 
   useEffect(() => {
     if (state.token) {

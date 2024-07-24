@@ -12,7 +12,7 @@ const Login: FC = () => {
 
     try {
       const response = await login(email);
-      console.log("response:", response);
+      // console.log("response:", response);
 
       navigate("/auth/success", { state: { message: response.message } }); // message: "Check your email to finish logging in"
     } catch (error) {

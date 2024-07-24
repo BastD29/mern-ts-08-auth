@@ -1,12 +1,12 @@
 import { BASE_URL, ME } from "../constants/endpoints";
-import { ResponseType } from "../models/user";
+import { /* ResponseType, */ UserType } from "../models/user";
 
-const getMe = async (token: string): Promise<ResponseType> => {
-  console.log("token:", token);
+const getMe = async (token: string): Promise<UserType> => {
+  // console.log("token:", token);
 
   try {
     const url = `${BASE_URL}${ME}`;
-    console.log("url:", url);
+    // console.log("url:", url);
 
     const response = await fetch(url, {
       method: "GET",
@@ -15,14 +15,14 @@ const getMe = async (token: string): Promise<ResponseType> => {
       },
     });
 
-    console.log("response:", response);
+    // console.log("response:", response);
 
     if (!response.ok) {
       throw new Error("fetch profile failed");
     }
 
-    const data: ResponseType = await response.json();
-    console.log("data:", data);
+    const data: UserType = await response.json();
+    // console.log("data:", data);
 
     return data;
   } catch (error) {

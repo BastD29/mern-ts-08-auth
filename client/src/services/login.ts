@@ -6,7 +6,7 @@ const login = async (email: string) => {
 
   try {
     const url = `${BASE_URL}${LOGIN}`;
-    console.log("url:", url);
+    // console.log("url:", url);
 
     const response = await fetch(url, {
       method: "POST",
@@ -16,7 +16,7 @@ const login = async (email: string) => {
       body: JSON.stringify({ email }),
     });
 
-    console.log("response:", response);
+    // console.log("response:", response);
 
     if (!response.ok) {
       throw new Error("Failed to fetch email");
