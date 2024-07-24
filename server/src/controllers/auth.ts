@@ -78,4 +78,35 @@ const verify = async (req: Request, res: Response) => {
   }
 };
 
-export { login, verify };
+const getMe = async (req: Request, res: Response) => {
+  const token = req.headers.authorization?.split(" ")[1];
+  console.log("token in getMe:", token);
+
+  if (!token) {
+    return res.sendStatus(401);
+  }
+
+  try {
+    if (!JWT_SECRET) {
+      throw new Error("JWT_SECRET is not defined");
+    }
+
+    const decodedToken = jwt.verify(
+      token,
+      JWT_SECRET
+    ) as unknown as AuthTokenPayload;
+
+    const userId = Number(decodedToken.userId);
+    const user = USERS.find((u) => u.id === userId);
+
+    if (!user) {
+      return res.sendStatus(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json({ id: user.id, email: user.email, name: user.name });
+  } catch (error) {
+    res.sendStatus(401);
+  }
+};
+
+export { login, verify, getMe };
