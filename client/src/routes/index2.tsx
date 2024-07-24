@@ -14,6 +14,9 @@ const Login: LazyExoticComponent<FC> = lazy(
 const NotFound: LazyExoticComponent<FC> = lazy(
   () => import("../pages/NotFound/NotFound")
 );
+const Success: LazyExoticComponent<FC> = lazy(
+  () => import("../pages/Success/Success")
+);
 
 export const routes: RouteObject[] = [
   {
@@ -24,7 +27,10 @@ export const routes: RouteObject[] = [
   {
     path: "/auth",
     element: <AuthLayout />,
-    children: [{ path: "login", element: <Login /> }],
+    children: [
+      { path: "login", element: <Login /> },
+      { path: "success", element: <Success /> },
+    ],
   },
   {
     path: "*",
