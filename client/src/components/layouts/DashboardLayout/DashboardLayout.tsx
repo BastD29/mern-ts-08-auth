@@ -1,23 +1,12 @@
-import { FC, Suspense, useEffect } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
-import { useAuthContext } from "../../../hooks/useAuthContext";
+import { FC, Suspense } from "react";
+import { Outlet } from "react-router-dom";
 import style from "./DashboardLayout.module.scss";
+import Loader from "../../Loader/Loader";
 
 const DashboardLayout: FC = () => {
-  const { state } = useAuthContext();
-  const navigate = useNavigate();
-
-  // console.log("state.token:", state.token);
-
-  useEffect(() => {
-    if (!state.token) {
-      navigate("/auth/login");
-    }
-  }, [state.token]);
-
   return (
     <div className={style["dashboard-layout"]}>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
     </div>
