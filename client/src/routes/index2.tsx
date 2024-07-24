@@ -18,7 +18,7 @@ const Success: LazyExoticComponent<FC> = lazy(
   () => import("../pages/Success/Success")
 );
 const Verify: LazyExoticComponent<FC> = lazy(
-  () => import("../pages/Verify/Verify")
+  () => import("../pages/Verify/Verify2")
 );
 
 export const routes: RouteObject[] = [
