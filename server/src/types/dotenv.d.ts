@@ -6,5 +6,6 @@ declare namespace NodeJS {
     JWT_SECRET: string;
     SEND_GRID_API_KEY: string;
     FROM_EMAIL: string;
+    BASE_URL: string;
   }
 }

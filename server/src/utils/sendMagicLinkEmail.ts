@@ -1,5 +1,9 @@
 import sendgrid from "@sendgrid/mail";
-import { FROM_EMAIL, SEND_GRID_API_KEY } from "../config/environments";
+import {
+  BASE_URL,
+  FROM_EMAIL,
+  SEND_GRID_API_KEY,
+} from "../config/environments";
 
 type SendMagicLinkEmailProps = {
   email: string;
@@ -26,7 +30,8 @@ async function sendMagicLinkEmail({ email, token }: SendMagicLinkEmailProps) {
       to: email,
       from: FROM_EMAIL,
       subject: "Finish logging in",
-      html: `<a href="http://localhost:3000/verify?token=${token}">Log In</a>`,
+      // html: `<a href="http://localhost:3000/verify?token=${token}">Log In</a>`,
+      html: `<a href="${BASE_URL}/verify?token=${token}">Log In</a>`,
     })
     .catch((error) => {
       console.error("Error sending email:", error); // Log errors from SendGrid

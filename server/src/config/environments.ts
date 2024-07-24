@@ -12,6 +12,7 @@ const {
   JWT_SECRET,
   SEND_GRID_API_KEY,
   FROM_EMAIL,
+  BASE_URL,
 } = process.env;
 
 export {
@@ -22,4 +23,5 @@ export {
   JWT_SECRET,
   SEND_GRID_API_KEY,
   FROM_EMAIL,
+  BASE_URL,
 };
