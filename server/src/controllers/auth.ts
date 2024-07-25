@@ -41,22 +41,29 @@ const login = async (req: Request, res: Response) => {
 };
 
 const getPrivate = async (req: Request, res: Response) => {
-  const sessionToken = req.cookies["session_token"];
-  console.log("sessionToken:", sessionToken);
+  try {
+    const sessionToken = req.cookies["session_token"];
+    console.log("sessionToken:", sessionToken);
 
-  if (!sessionToken) {
-    return res.status(401);
-  }
+    if (!sessionToken) {
+      return res.status(401).send("Unauthorized");
+    }
 
-  const currentUserSession = sessions[sessionToken];
-  console.log("currentUserSession:", currentUserSession);
+    const currentUserSession = sessions[sessionToken];
+    console.log("currentUserSession:", currentUserSession);
 
-  if (!currentUserSession) {
-    return res.status(401);
-  }
+    if (!currentUserSession) {
+      return res.status(401).send("Unauthorized");
+    }
 
-  if (new Date(currentUserSession.expiresAt) < new Date()) {
-    return res.status(401);
+    if (new Date(currentUserSession.expiresAt) < new Date()) {
+      return res.status(401).send("Unauthorized");
+    }
+
+    res.send("Hello authorized user");
+  } catch (error) {
+    console.error("Error during authorization:", error);
+    res.status(500).send("Internal Server Error");
   }
 };
 

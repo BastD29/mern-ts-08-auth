@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import { ALLOWED_ORIGIN, NODE_ENV, PORT } from "./config/environments";
 import auth from "./routes/auth";
 
@@ -24,7 +25,7 @@ const corsOptions: cors.CorsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(cookieParser());
 app.use("/", auth);
 
 app.listen(PORT, () => {
