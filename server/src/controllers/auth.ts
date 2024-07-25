@@ -60,7 +60,13 @@ const getPrivate = async (req: Request, res: Response) => {
       return res.status(401).send("Unauthorized");
     }
 
-    res.send("Hello authorized user");
+    const currentUser = users.find(
+      (user) => user.id === currentUserSession.userId
+    );
+    console.log("currentUser:", currentUser);
+
+    // res.send("Hello authorized user");
+    res.send(`Hi ${currentUser?.name}`);
   } catch (error) {
     console.error("Error during authorization:", error);
     res.status(500).send("Internal Server Error");
