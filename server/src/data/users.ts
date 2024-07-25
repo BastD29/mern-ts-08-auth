@@ -1,8 +1,8 @@
 import { UserType } from "../types/user";
 
 // * simulates a database
-const USERS: UserType[] = [
-  { id: 1, email: "jepof52517@tiervio.com", name: "test" },
+const users: UserType[] = [
+  { id: 1, email: "jepof52517@tiervio.com", name: "test", password: "123" },
 ];
 
-export { USERS };
+export { users };
