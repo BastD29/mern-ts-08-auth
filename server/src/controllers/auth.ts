@@ -40,4 +40,24 @@ const login = async (req: Request, res: Response) => {
   }
 };
 
-export { login };
+const getPrivate = async (req: Request, res: Response) => {
+  const sessionToken = req.cookies["session_token"];
+  console.log("sessionToken:", sessionToken);
+
+  if (!sessionToken) {
+    return res.status(401);
+  }
+
+  const currentUserSession = sessions[sessionToken];
+  console.log("currentUserSession:", currentUserSession);
+
+  if (!currentUserSession) {
+    return res.status(401);
+  }
+
+  if (new Date(currentUserSession.expiresAt) < new Date()) {
+    return res.status(401);
+  }
+};
+
+export { login, getPrivate };
